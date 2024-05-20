@@ -1,38 +1,62 @@
-.App {
-  text-align: center;
+.webcam-feed-container {
+  width: 100%;
+  padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.webcam-feed {
+  width: 100%;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.lens-selection-container {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
 }
 
-.App-link {
-  color: #61dafb;
+.lens-image-wrapper {
+  position: relative;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.lens-image {
+  max-width: 50px; /* Ensure images don't exceed container width */
+  height: auto; /* Maintain aspect ratio */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) { /* Adjust max-width based on screen width */
+  .lens-image {
+    max-width: 40px; /* Set a smaller max-width for small screens */
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.shadow-box {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(46, 46, 46, 0.5);
+  border-radius: 5px;
+  display: none;
+}
+
+.lens-image-wrapper.selected .shadow-box {
+  display: block;
+}
+
+.lens-image-wrapper:hover .lens-image {
+  transform: scale(1.1);
 }

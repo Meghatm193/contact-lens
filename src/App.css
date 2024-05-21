@@ -40,6 +40,9 @@
   .lens-image {
     max-width: 40px; /* Set a smaller max-width for small screens */
   }
+  .overlay-canvas{
+    max-height: 100%;
+  }
 }
 
 .shadow-box {

@@ -3,19 +3,15 @@
   padding: 10px;
 }
 
-.webcam-feed {
-  width: 100%;
-  height: auto;
-}
 
 .overlay-canvas {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
   height: auto;
-}
-
+  }
 
 .lens-selection-container {
   position: absolute;
@@ -28,30 +24,54 @@
 
 .lens-image-wrapper {
   position: relative;
-  margin: 5px 0;
+  margin: 3px 0;
   cursor: pointer;
 }
+
 .lens-image {
-  max-width: 50px; /* Ensure images don't exceed container width */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 50px;
+  /* Ensure images don't exceed container width */
+  height: auto;
+  /* Maintain aspect ratio */
 }
 
-@media (max-width: 768px) { /* Adjust max-width based on screen width */
+@media (max-width: 768px) {
+  .overlay-canvas {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: auto;
+    }
+    
+.lens-selection-container {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+  /* Adjust max-width based on screen width */
   .lens-image {
-    max-width: 40px; /* Set a smaller max-width for small screens */
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 30px;
+    /* Set a smaller max-width for small screens */
   }
-  .overlay-canvas{
-    max-height: 100%;
-  }
+
 }
 
 .shadow-box {
   position: absolute;
   top: 0;
   right: 0px;
-  width: 50px;
-  height: 50px;
-  background-color: rgba(46, 46, 46, 0.5);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(157, 157, 157, 0.5);
   border-radius: 5px;
   display: none;
 }

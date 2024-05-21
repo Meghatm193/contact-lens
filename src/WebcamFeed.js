@@ -68,8 +68,8 @@ const WebcamFeed = () => {
       onFrame: async () => {
         await faceMesh.send({ image: webcamRef.current.video });
       },
-      width: 640,
-      height: 480,
+      width: 1920,
+      height: 1080,
     });
     camera.start();
   };
@@ -129,7 +129,7 @@ const WebcamFeed = () => {
       // Calculate the width and height of the iris
       const irisWidth = Math.abs(eyeLandmarks[3].x - eyeLandmarks[0].x) * canvasRef.current.width * 1.6;
       const irisHeight = Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) * canvasRef.current.height;
-      const irisSize = Math.min(irisWidth, irisHeight) * 1.5; 
+      const irisSize = Math.min(irisWidth, irisHeight) * 1.6; 
       canvasCtx.drawImage(
         selectedLensRef.current,
         eyeCenterX - irisSize / 2,

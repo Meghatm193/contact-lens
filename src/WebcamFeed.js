@@ -68,8 +68,8 @@ const WebcamFeed = () => {
       onFrame: async () => {
         await faceMesh.send({ image: webcamRef.current.video });
       },
-      width: 1920,
-      height: 1080,
+      width: 640,
+      height: 480,
     });
     camera.start();
   };

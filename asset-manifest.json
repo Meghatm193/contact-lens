@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/contact-lens/static/css/main.48344079.css",
+    "main.css": "/contact-lens/static/css/main.55b5314f.css",
     "main.js": "/contact-lens/static/js/main.337bced4.js",
     "static/js/453.19d9e306.chunk.js": "/contact-lens/static/js/453.19d9e306.chunk.js",
     "static/media/lens1.png": "/contact-lens/static/media/lens1.32127169b525cb45a067.png",
@@ -11,12 +11,12 @@
     "static/media/lens4.png": "/contact-lens/static/media/lens4.75aa08ffbc45d5ca4a0b.png",
     "static/media/lens3.png": "/contact-lens/static/media/lens3.01cd3aa947b6f6eb35e9.png",
     "index.html": "/contact-lens/index.html",
-    "main.48344079.css.map": "/contact-lens/static/css/main.48344079.css.map",
+    "main.55b5314f.css.map": "/contact-lens/static/css/main.55b5314f.css.map",
     "main.337bced4.js.map": "/contact-lens/static/js/main.337bced4.js.map",
     "453.19d9e306.chunk.js.map": "/contact-lens/static/js/453.19d9e306.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48344079.css",
+    "static/css/main.55b5314f.css",
     "static/js/main.337bced4.js"
   ]
 }

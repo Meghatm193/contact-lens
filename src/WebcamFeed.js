@@ -152,17 +152,22 @@ const WebcamFeed = () => {
     const landmarks = lastResults.multiFaceLandmarks[0];
     drawContactLens(canvasCtx, landmarks);
   };
-
   return (
     <div className="webcam-feed-container">
       {loading && <div className="loading-text">Loading...</div>}
-      <Webcam hidden
-        ref={webcamRef}
+      <Webcam
+        ref={webcamRef} hidden
         className="webcam-feed"
+        videoConstraints={{
+          width: 1280, // Increase webcam resolution
+          height: 720, // Increase webcam resolution
+        }}
       />
       <canvas
         ref={canvasRef}
         className="overlay-canvas"
+        width={1280} // Match webcam resolution
+        height={720} // Match webcam resolution
       />
       <div className="lens-selection-container">
         {lensImages.map((image, index) => (

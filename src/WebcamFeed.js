@@ -9,16 +9,21 @@ import lensImage4 from '../src/lens4.png';
 import lensImage5 from '../src/lens5.png';
 import lensImage6 from '../src/lens6.png';
 import lensImage7 from '../src/lens7.png';
+import lensImage8 from '../src/lens8.png';
+import lensImage9 from '../src/lens9.png';
+import lensImage10 from '../src/lens10.png';
+import lensImage11 from '../src/lens11.png';
+import loadingSpinner from '../src/loading-spinner.gif'; // Import your loading spinner image
 
 const WebcamFeed = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const faceMeshRef = useRef(null); // Reference for face mesh instance
-  const lensRefs = [useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image())];
+  const lensRefs = [useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image())];
   const [selectedLens, setSelectedLens] = useState(() => parseInt(localStorage.getItem('selectedLens')) || 0);
-  const [eyesOpen, setEyesOpen] = useState(true); // State to track eye state
-  const [loading, setLoading] = useState(true); // Loading state
-  const lensImages = [lensImage1, lensImage2, lensImage3, lensImage4, lensImage5, lensImage6, lensImage7];
+  const [eyesOpen, setEyesOpen] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const lensImages = [lensImage1, lensImage2, lensImage3, lensImage4, lensImage5, lensImage6, lensImage7, lensImage8, lensImage9,lensImage10, lensImage11];
 
   useEffect(() => {
     const loadLensImages = async () => {
@@ -29,7 +34,7 @@ const WebcamFeed = () => {
         })
       );
 
-      setLoading(false); // Set loading to false after all lens images are loaded
+      setLoading(true); // Set loading to false after all lens images are loaded
       startFaceMesh();
     };
 
@@ -57,8 +62,8 @@ const WebcamFeed = () => {
 
     faceMesh.setOptions({
       maxNumFaces: 1,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5,
+      minDetectionConfidence: 0.6,
+      minTrackingConfidence: 0.6,
     });
 
     faceMesh.onResults(onResults);
@@ -152,23 +157,28 @@ const WebcamFeed = () => {
     const landmarks = lastResults.multiFaceLandmarks[0];
     drawContactLens(canvasCtx, landmarks);
   };
+
   return (
     <div className="webcam-feed-container">
-      {loading && <div className="loading-text">Loading...</div>}
       <Webcam
         ref={webcamRef} hidden
         className="webcam-feed"
         videoConstraints={{
-          width: 1280, // Increase webcam resolution
-          height: 720, // Increase webcam resolution
+          width: 1920, // Increase webcam resolution
+          height: 1080, // Increase webcam resolution
         }}
       />
       <canvas
         ref={canvasRef}
         className="overlay-canvas"
-        width={1280} // Match webcam resolution
-        height={720} // Match webcam resolution
+        width={1920} // Match webcam resolution
+        height={1080} // Match webcam resolution
       />
+      {loading && (
+        <div className="loading-overlay">
+          <img src={loadingSpinner} alt="Loading Spinner" />
+        </div>
+      )}
       <div className="lens-selection-container">
         {lensImages.map((image, index) => (
           <div 

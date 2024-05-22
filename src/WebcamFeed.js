@@ -14,7 +14,7 @@ const WebcamFeed = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const faceMeshRef = useRef(null); // Reference for face mesh instance
-  const lensRefs = [useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image())];
+  const lensRefs = [useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image()), useRef(new Image())];
   const [selectedLens, setSelectedLens] = useState(() => parseInt(localStorage.getItem('selectedLens')) || 0);
   const [eyesOpen, setEyesOpen] = useState(true); // State to track eye state
   const [loading, setLoading] = useState(true); // Loading state

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/contact-lens/static/css/main.3d114f35.css",
-    "main.js": "/contact-lens/static/js/main.cb0ace0a.js",
+    "main.js": "/contact-lens/static/js/main.b68e124f.js",
     "static/js/453.19d9e306.chunk.js": "/contact-lens/static/js/453.19d9e306.chunk.js",
     "static/media/lens12.png": "/contact-lens/static/media/lens12.d3b0833e5725232cba68.png",
     "static/media/lens1.png": "/contact-lens/static/media/lens1.5a61b05bb9295cba303f.png",
@@ -17,11 +17,11 @@
     "static/media/loading-spinner.gif": "/contact-lens/static/media/loading-spinner.a1a996746e5e48352c81.gif",
     "index.html": "/contact-lens/index.html",
     "main.3d114f35.css.map": "/contact-lens/static/css/main.3d114f35.css.map",
-    "main.cb0ace0a.js.map": "/contact-lens/static/js/main.cb0ace0a.js.map",
+    "main.b68e124f.js.map": "/contact-lens/static/js/main.b68e124f.js.map",
     "453.19d9e306.chunk.js.map": "/contact-lens/static/js/453.19d9e306.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d114f35.css",
-    "static/js/main.cb0ace0a.js"
+    "static/js/main.b68e124f.js"
   ]
 }

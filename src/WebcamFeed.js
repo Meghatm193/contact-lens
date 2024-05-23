@@ -4,8 +4,8 @@ import * as faceMeshLib from '@mediapipe/face_mesh';
 import * as cam from '@mediapipe/camera_utils';
 import lensImage1 from '../src/lens1.png';
 import lensImage2 from '../src/lens2.png';
-import lensImage3 from '../src/lens3.png';
-import lensImage4 from '../src/lens4.png';
+import lensImage3 from '../src/lens12.png';
+import lensImage4 from '../src/lens13.png';
 import lensImage5 from '../src/lens5.png';
 import lensImage6 from '../src/lens6.png';
 import lensImage7 from '../src/lens7.png';
@@ -125,24 +125,35 @@ const WebcamFeed = () => {
         console.error('Eye landmarks or selected lens reference not available.');
         return;
       }
-      console.log("Landmarks:", landmarks);
-      console.log("Selected lens reference:", selectedLensRef);
+    
       // Calculate the center of the eye
-      const eyeCenterX = (eyeLandmarks.reduce((acc, curr) => acc + curr.x, 0) / eyeLandmarks.length) * canvasRef.current.width;
-      const eyeCenterY = (eyeLandmarks.reduce((acc, curr) => acc + curr.y, 0) / eyeLandmarks.length) * canvasRef.current.height;
-  
+      const eyeCenterX = ((eyeLandmarks[0].x + eyeLandmarks[3].x) / 2) * canvasRef.current.width + 8;
+      const eyeCenterY = (eyeLandmarks[0].y * canvasRef.current.height + eyeLandmarks[3].y * canvasRef.current.height) / 2 - 4 ;
+    
       // Calculate the width and height of the iris
-      const irisWidth = Math.abs(eyeLandmarks[3].x - eyeLandmarks[0].x) * canvasRef.current.width * 1.6;
-      const irisHeight = Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) * canvasRef.current.height;
-      const irisSize = Math.min(irisWidth, irisHeight) * 1.6; 
+      const irisWidth = Math.abs(eyeLandmarks[3].x - eyeLandmarks[0].x) * canvasRef.current.width * 1.8;
+      const irisHeight = Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) * canvasRef.current.height * 1.1;
+      const irisSize = Math.min(irisWidth, irisHeight) * 1.6;
+    
+      // Set transparency level
+      canvasCtx.globalAlpha = 0.2;
+    
+      canvasRef.current.style.filter = 'blur(2px)';
+      // Draw the lens
       canvasCtx.drawImage(
         selectedLensRef.current,
-        eyeCenterX - irisSize / 2,
+        eyeCenterX - irisSize / 2 - irisSize * 0.1, // Adjust the position towards the inner corner
         eyeCenterY - irisSize / 2,
         irisSize,
         irisSize
       );
+    
+      // Reset transparency level and remove blur effect
+      canvasCtx.globalAlpha = 1;
+      canvasRef.current.style.filter = 'none';
     };
+    
+    
   
     const selectedLensRef = lensRefs[selectedLens];
     drawLens(leftEye, selectedLensRef);

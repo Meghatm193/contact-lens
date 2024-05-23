@@ -1,110 +1,90 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { FaceDetection } from '@mediapipe/face_detection';
+import { drawConnectors, drawLandmarks } from '@mediapipe/drawing_utils';
 import Webcam from 'react-webcam';
-import * as faceMeshLib from '@mediapipe/face_mesh';
-import * as cam from '@mediapipe/camera_utils';
-import GlassesFrame1 from './glasses-frame-1.png'; // Import glasses frame images
-import GlassesFrame2 from './glasses-frame-2.png';
-// Import other glasses frame images as needed
+import './GlassesTryOn.css'; // Import CSS for styling the glasses overlay
 
 const GlassesTryOn = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const faceMeshRef = useRef(null);
-  const [selectedFrame, setSelectedFrame] = useState(1); // Initial selected frame
-  const [loading, setLoading] = useState(true);
+  const [faceDetection, setFaceDetection] = useState(null);
 
   useEffect(() => {
-    const loadFaceMesh = async () => {
-      const faceMesh = new faceMeshLib.FaceMesh({
-        locateFile: file =>
-          `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
-      });
+    const faceDetection = new FaceDetection({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}` });
+    faceDetection.setOptions({
+      maxNumFaces: 1,
+      minDetectionConfidence: 0.5,
+    });
+    setFaceDetection(faceDetection);
 
-      faceMesh.setOptions({
-        maxNumFaces: 1,
-        minDetectionConfidence: 0.5,
-        minTrackingConfidence: 0.5,
-      });
-
-      faceMesh.onResults(onFaceMeshResults);
-      faceMeshRef.current = faceMesh;
-
-      const camera = new cam.Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          await faceMesh.send({ image: webcamRef.current.video });
-        },
-        width: 640,
-        height: 480,
-      });
-      camera.start();
-
-      setLoading(false);
+    return () => {
+      faceDetection.close();
     };
-
-    loadFaceMesh();
   }, []);
 
-  const onFaceMeshResults = results => {
-    const canvasElement = canvasRef.current;
-    const canvasCtx = canvasElement.getContext('2d');
-    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-    canvasCtx.drawImage(
-      results.image,
-      0,
-      0,
-      canvasElement.width,
-      canvasElement.height
-    );
+  const detectFace = async () => {
+    const webcam = webcamRef.current;
+    const canvas = canvasRef.current;
+    const video = webcam.video;
+    const context = canvas.getContext('2d');
 
-    if (results.multiFaceLandmarks) {
-      // Process face landmarks to detect eyes
-      const landmarks = results.multiFaceLandmarks[0];
-      drawGlassesFrames(canvasCtx, landmarks);
+    canvas.width = webcam.video.videoWidth;
+    canvas.height = webcam.video.videoHeight;
+
+    const result = await faceDetection.send({ image: video });
+
+    if (result.detections.length > 0) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      const landmarks = result.detections[0].landmarks;
+
+      const leftEyeLandmarks = landmarks.slice(36, 42);
+      const rightEyeLandmarks = landmarks.slice(42, 48);
+
+      const leftEyePosition = calculateEyePosition(leftEyeLandmarks);
+      const rightEyePosition = calculateEyePosition(rightEyeLandmarks);
+
+      overlayGlasses(context, leftEyePosition, rightEyePosition);
     }
+
+    requestAnimationFrame(detectFace);
   };
 
-  const drawGlassesFrames = (canvasCtx, landmarks) => {
-    // Implement logic to position glasses frames over the eyes based on landmarks
-    // Use selectedFrame state to determine which glasses frame to show
+  const calculateEyePosition = (eyeLandmarks) => {
+    // Calculate the midpoint of the eye landmarks
+    const x = eyeLandmarks.reduce((acc, curr) => acc + curr.x, 0) / eyeLandmarks.length;
+    const y = eyeLandmarks.reduce((acc, curr) => acc + curr.y, 0) / eyeLandmarks.length;
+    return { x, y };
   };
 
-  const handleFrameSelection = frameNumber => {
-    setSelectedFrame(frameNumber);
+  const overlayGlasses = (context, leftEyePosition, rightEyePosition) => {
+    const glassesWidth = 200; 
+    const glassesHeight = 60; 
+    const glassesImg = new Image();
+    glassesImg.src = 'src/glasses1.png'; 
+   console.log("glassesImg.src",glassesImg.src);
+    glassesImg.onload = function () {
+      context.drawImage(glassesImg, leftEyePosition.x - glassesWidth * 0.25, leftEyePosition.y - glassesHeight * 0.5, glassesWidth, glassesHeight);
+      context.drawImage(glassesImg, rightEyePosition.x - glassesWidth * 0.75, rightEyePosition.y - glassesHeight * 0.5, glassesWidth, glassesHeight);
+    };
   };
+
+  useEffect(() => {
+    if (webcamRef.current && faceDetection) {
+      detectFace();
+    }
+  }, [webcamRef.current, faceDetection]);
 
   return (
-    <div className="glasses-try-on-container">
-      {loading && <div className="loading-text">Loading...</div>}
+    <div className="eye-glasses-detector">
       <Webcam
         ref={webcamRef}
-        hidden
-        className="webcam-feed"
-        videoConstraints={{
-          width: 1280,
-          height: 720,
-        }}
+        audio={false}
+        width={640}
+        height={480}
+        screenshotFormat="image/jpeg"
+        className="webcam"
       />
-      <canvas
-        ref={canvasRef}
-        className="overlay-canvas"
-        width={1280}
-        height={720}
-      />
-      <div className="frame-selection-container">
-        <img
-          src={GlassesFrame1}
-          alt="Glasses Frame 1"
-          onClick={() => handleFrameSelection(1)}
-          className={`glasses-frame ${selectedFrame === 1 ? 'selected' : ''}`}
-        />
-        <img
-          src={GlassesFrame2}
-          alt="Glasses Frame 2"
-          onClick={() => handleFrameSelection(2)}
-          className={`glasses-frame ${selectedFrame === 2 ? 'selected' : ''}`}
-        />
-        {/* Add more images for additional glasses frames */}
-      </div>
+      <canvas ref={canvasRef} className="canvas" />
     </div>
   );
 };

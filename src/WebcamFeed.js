@@ -127,13 +127,13 @@ const WebcamFeed = () => {
       }
     
       // Calculate the center of the eye
-      const eyeCenterX = ((eyeLandmarks[0].x + eyeLandmarks[3].x) / 2) * canvasRef.current.width + 8;
+      const eyeCenterX = ((eyeLandmarks[0].x + eyeLandmarks[3].x) / 2) * canvasRef.current.width + 7;
       const eyeCenterY = (eyeLandmarks[0].y * canvasRef.current.height + eyeLandmarks[3].y * canvasRef.current.height) / 2 - 4 ;
     
       // Calculate the width and height of the iris
       const irisWidth = Math.abs(eyeLandmarks[3].x - eyeLandmarks[0].x) * canvasRef.current.width * 1.8;
-      const irisHeight = Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) * canvasRef.current.height * 1.1;
-      const irisSize = Math.min(irisWidth, irisHeight) * 1.6;
+      const irisHeight = Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) * canvasRef.current.height ;
+      const irisSize = Math.min(irisWidth, irisHeight) * 1.7;
     
       // Set transparency level
       canvasCtx.globalAlpha = 0.2;

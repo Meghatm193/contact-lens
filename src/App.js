@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import WebcamFeed from './WebcamFeed';
 import { BrowserRouter, Routes , Route } from 'react-router-dom';
-import GlassesTryOn from './GlassesTryOn';
+import TryOnGlasses from './TryOnGlasses';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
       <BrowserRouter>
     <Routes>
-    <Route path="glasses-frames" element={<GlassesTryOn />} />
+    <Route path="glasses-frames" element={<TryOnGlasses />} />
     <Route path="contact-lens" element={<WebcamFeed />} />
     </Routes>
   </BrowserRouter>

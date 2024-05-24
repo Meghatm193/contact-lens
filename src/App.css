@@ -24,7 +24,7 @@
 }
 .lens-selection-container {
   position: absolute;
-  top: 5px;
+  top: 15px;
   right: 5%;
   height: 410px;
   overflow-y: auto; /* Add vertical scrollbar when needed */

@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
-import frame1 from "../src/frame1.png";
-import frame2 from "../src/frame2.png";
-import frame3 from "../src/frame1.png";
-import frame4 from "../src/frame2.png";
-import frame5 from "../src/frame1.png";
-import frame6 from "../src/frame2.png";
-import loadingSpinner from "../src/loading-spinner.gif";
+import frame1 from "./frame1.png";
+import frame2 from "./frame2.png";
+import frame3 from "./frame1.png";
+import frame4 from "./frame2.png";
+import frame5 from "./frame1.png";
+import frame6 from "./frame1.png";
+import loadingSpinner from "./loading-spinner.gif";
 
 const TryOnFrames = () => {
   const webcamRef = useRef(null);

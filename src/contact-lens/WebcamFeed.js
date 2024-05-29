@@ -2,18 +2,18 @@ import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
-import lensImage1 from "../src/lens1.png";
-import lensImage2 from "../src/lens2.png";
-import lensImage3 from "../src/trs1.png";
-import lensImage4 from "../src/trs6.png";
-import lensImage5 from "../src/trs12.png";
-import lensImage6 from "../src/hhh.png";
-import lensImage7 from "../src/lens7.png";
-import lensImage8 from "../src/lens8.png";
-import lensImage9 from "../src/lens9.png";
-import lensImage10 from "../src/lens10.png";
-import lensImage11 from "../src/lens11.png";
-import loadingSpinner from "../src/loading-spinner.gif"; // Import your loading spinner image
+import lensImage1 from "./lens1.png";
+import lensImage2 from "./lens2.png";
+import lensImage3 from "./trs1.png";
+import lensImage4 from "./trs6.png";
+import lensImage5 from "./trs12.png";
+import lensImage6 from "./hhh.png";
+import lensImage7 from "./lens7.png";
+import lensImage8 from "./lens8.png";
+import lensImage9 from "./lens9.png";
+import lensImage10 from "./lens10.png";
+import lensImage11 from "./lens11.png";
+import loadingSpinner from "./loading-spinner.gif"; // Import your loading spinner image
 
 const WebcamFeed = () => {
   const webcamRef = useRef(null);

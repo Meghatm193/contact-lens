@@ -29,9 +29,12 @@
     "web-vitals": "^2.1.4"
   },
   "homepage": "https://Meghatm193.github.io/contact-lens",
+  "homepage-glasses": "https://Meghatm193.github.io/contact-lens/glasses-frames/",
+"homepage-lens": "https://Meghatm193.github.io/contact-lens/contact-lens/",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy-glasses": "gh-pages -d glasses-frames",
+    "deploy-lens": "gh-pages -d contact-lens",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

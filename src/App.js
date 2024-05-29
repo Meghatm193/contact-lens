@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import WebcamFeed from './WebcamFeed';
 import { BrowserRouter, Routes , Route } from 'react-router-dom';
-import TryOnGlasses from './TryOnGlasses';
+import WebcamFeed from './contact-lens/WebcamFeed';
+import TryOnGlasses from './glasses-frames/TryOnGlasses';
+
 
 function App() {
   return (

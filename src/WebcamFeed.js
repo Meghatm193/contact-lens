@@ -4,10 +4,10 @@ import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
 import lensImage1 from "../src/lens1.png";
 import lensImage2 from "../src/lens2.png";
-import lensImage3 from "../src/lens12.png";
-import lensImage4 from "../src/lens13.png";
-import lensImage5 from "../src/lens5.png";
-import lensImage6 from "../src/lens6.png";
+import lensImage3 from "../src/trs1.png";
+import lensImage4 from "../src/trs6.png";
+import lensImage5 from "../src/trs12.png";
+import lensImage6 from "../src/hhh.png";
 import lensImage7 from "../src/lens7.png";
 import lensImage8 from "../src/lens8.png";
 import lensImage9 from "../src/lens9.png";
@@ -60,7 +60,7 @@ const WebcamFeed = () => {
         })
       );
 
-      setLoading(true); // Set loading to false after all lens images are loaded
+      setLoading(true); 
       startFaceMesh();
     };
 
@@ -89,8 +89,8 @@ const WebcamFeed = () => {
 
     faceMesh.setOptions({
       maxNumFaces: 1,
-      minDetectionConfidence: 0.6,
-      minTrackingConfidence: 0.6,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
     });
 
     faceMesh.onResults(onResults);
@@ -100,8 +100,8 @@ const WebcamFeed = () => {
       onFrame: async () => {
         await faceMesh.send({ image: webcamRef.current.video });
       },
-      width: 640,
-      height: 480,
+      width: 1920,
+      height: 1080,
     });
     camera.start();
   };
@@ -187,20 +187,20 @@ const WebcamFeed = () => {
         (eyeLandmarks[0].y * canvasRef.current.height +
           eyeLandmarks[3].y * canvasRef.current.height) /
           2 -
-        4;
+        5;
 
       // Calculate the width and height of the iris
       const irisWidth =
         Math.abs(eyeLandmarks[3].x - eyeLandmarks[0].x) *
         canvasRef.current.width *
-        1.8;
+        4;
       const irisHeight =
         Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) *
         canvasRef.current.height;
-      const irisSize = Math.min(irisWidth, irisHeight) * 1.7;
+      const irisSize = Math.min(irisWidth, irisHeight) * 1.8;
 
       // Set transparency level
-      canvasCtx.globalAlpha = 0.2;
+      canvasCtx.globalAlpha = 0.7;
 
       canvasRef.current.style.filter = "blur(2px)";
       // Draw the lens

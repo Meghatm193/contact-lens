@@ -2,17 +2,28 @@ import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
-import lensImage1 from "../src/lens1.png";
-import lensImage2 from "../src/lens2.png";
-import lensImage3 from "../src/trs1.png";
-import lensImage4 from "../src/trs6.png";
-import lensImage5 from "../src/trs12.png";
-import lensImage6 from "../src/hhh.png";
-import lensImage7 from "../src/lens7.png";
-import lensImage8 from "../src/lens8.png";
-import lensImage9 from "../src/lens9.png";
-import lensImage10 from "../src/lens10.png";
-import lensImage11 from "../src/lens11.png";
+import lensImage1 from "../src/Lens/1.png";
+import lensImage2 from "../src/Lens/2.png";
+import lensImage3 from "../src/Lens/3.png";
+import lensImage4 from "../src/Lens/4.png";
+import lensImage5 from "../src/Lens/5.png";
+import lensImage6 from "../src/Lens/6.png";
+import lensImage7 from "../src/Lens/7.png";
+import lensImage8 from "../src/Lens/8.png";
+import lensImage9 from "../src/Lens/9.png";
+import lensImage10 from "../src/Lens/10.png";
+import lensImage11 from "../src/Lens/11.png";
+import lensBackground1 from "../src/Lens2/1.png";
+import lensBackground2 from "../src/Lens2/2.png";
+import lensBackground3 from "../src/Lens2/3.png";
+import lensBackground4 from "../src/Lens2/4.png";
+import lensBackground5 from "../src/Lens2/5.png";
+import lensBackground6 from "../src/Lens2/6.png";
+import lensBackground7 from "../src/Lens2/7.png";
+import lensBackground8 from "../src/Lens2/8.png";
+import lensBackground9 from "../src/Lens2/9.png";
+import lensBackground10 from "../src/Lens2/10.png";
+import lensBackground11 from "../src/Lens2/11.png";
 import loadingSpinner from "../src/loading-spinner.gif"; // Import your loading spinner image
 
 const WebcamFeed = () => {
@@ -35,6 +46,8 @@ const WebcamFeed = () => {
   const [selectedLens, setSelectedLens] = useState(
     () => parseInt(localStorage.getItem("selectedLens")) || 0
   );
+  const [selectedLensForContainer, setSelectedLensForContainer] = useState(null);
+  const [selectedLensBackground, setSelectedLensBackground] = useState(null);
   const [eyesOpen, setEyesOpen] = useState(true);
   const [loading, setLoading] = useState(true);
   const lensImages = [
@@ -51,6 +64,20 @@ const WebcamFeed = () => {
     lensImage11,
   ];
 
+  const lensBackgroundImages = [
+    lensBackground1,
+    lensBackground2,
+    lensBackground3,
+    lensBackground4,
+    lensBackground5,
+    lensBackground6,
+    lensBackground7,
+    lensBackground8,
+    lensBackground9,
+    lensBackground10,
+    lensBackground11,
+  ];
+
   useEffect(() => {
     const loadLensImages = async () => {
       await Promise.all(
@@ -60,7 +87,7 @@ const WebcamFeed = () => {
         })
       );
 
-      setLoading(true); 
+      setLoading(false); // Set loading to false when images are loaded
       startFaceMesh();
     };
 
@@ -237,12 +264,9 @@ const WebcamFeed = () => {
   };
 
   const handleLensSelection = (index) => {
-    window.location.reload();
     setSelectedLens(index);
-    const canvasCtx = canvasRef.current.getContext("2d");
-    // Access landmarks from the results object
-    const landmarks = lastResults.multiFaceLandmarks[0];
-    drawContactLens(canvasCtx, landmarks);
+    setSelectedLensForContainer(index);
+    setSelectedLensBackground(lensBackgroundImages[index]);
   };
 
   return (
@@ -285,6 +309,22 @@ const WebcamFeed = () => {
           </div>
         ))}
       </div>
+      {selectedLensForContainer !== null && (
+        <div className="selected-lens-container">
+          {selectedLensBackground && (
+            <img
+              src={selectedLensBackground}
+              alt={`Background Lens ${selectedLensForContainer + 1}`}
+              className="selected-lens-background img-fluid"
+            />
+          )}
+          <img
+            src={lensImages[selectedLensForContainer]}
+            alt={`Selected Lens ${selectedLensForContainer + 1}`}
+            className="selected-lens-image img-fluid"
+          />
+        </div>
+      )}
     </div>
   );
 };

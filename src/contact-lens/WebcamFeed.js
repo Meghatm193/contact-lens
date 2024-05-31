@@ -2,17 +2,17 @@ import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
-import lensImage1 from "./lens1.png";
-import lensImage2 from "./lens2.png";
-import lensImage3 from "./trs1.png";
-import lensImage4 from "./trs6.png";
-import lensImage5 from "./trs12.png";
-import lensImage6 from "./hhh.png";
-import lensImage7 from "./lens7.png";
-import lensImage8 from "./lens8.png";
-import lensImage9 from "./lens9.png";
-import lensImage10 from "./lens10.png";
-import lensImage11 from "./lens11.png";
+import lensImage1 from "../Lens/1.png";
+import lensImage2 from "../Lens/2.png";
+import lensImage3 from "../Lens/3.png";
+import lensImage4 from "../Lens/4.png";
+import lensImage5 from "../Lens/5.png";
+import lensImage6 from "../Lens/6.png";
+import lensImage7 from "../Lens/7.png";
+import lensImage8 from "../Lens/8.png";
+import lensImage9 from "../Lens/9.png";
+import lensImage10 from "../Lens/10.png";
+import lensImage11 from "../Lens/11.png";
 import loadingSpinner from "./loading-spinner.gif"; // Import your loading spinner image
 
 const WebcamFeed = () => {
@@ -200,7 +200,7 @@ const WebcamFeed = () => {
       const irisSize = Math.min(irisWidth, irisHeight) * 1.8;
 
       // Set transparency level
-      canvasCtx.globalAlpha = 0.7;
+      canvasCtx.globalAlpha = 0.4;
 
       canvasRef.current.style.filter = "blur(2px)";
       // Draw the lens

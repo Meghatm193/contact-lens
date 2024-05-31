@@ -109,3 +109,22 @@
 .lens-image-wrapper:hover .lens-image {
   transform: scale(1.1);
 }
+
+.selected-lens-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.selected-lens-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Ensure the background is behind the lens image */
+}
+
+.selected-lens-image {
+  position: relative;
+  z-index: 1; /* Ensure the lens image is on top */
+}

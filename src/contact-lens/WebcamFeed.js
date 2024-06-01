@@ -200,7 +200,7 @@ const WebcamFeed = () => {
       const irisSize = Math.min(irisWidth, irisHeight) * 1.8;
 
       // Set transparency level
-      canvasCtx.globalAlpha = 0.4;
+      canvasCtx.globalAlpha = 0.3;
 
       canvasRef.current.style.filter = "blur(2px)";
       // Draw the lens

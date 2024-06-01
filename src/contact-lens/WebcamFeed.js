@@ -13,6 +13,14 @@ import lensImage8 from "../Lens/8.png";
 import lensImage9 from "../Lens/9.png";
 import lensImage10 from "../Lens/10.png";
 import lensImage11 from "../Lens/11.png";
+import lensImage12 from "../Lens/12.png";
+import lensImage13 from "../Lens/13.png";
+import lensImage14 from "../Lens/14.png";
+import lensImage15 from "../Lens/15.png";
+import lensImage16 from "../Lens/16.png";
+import lensImage17 from "../Lens/17.png";
+import lensImage18 from "../Lens/18.png";
+import lensImage19 from "../Lens/19.png";
 import loadingSpinner from "./loading-spinner.gif"; // Import your loading spinner image
 
 const WebcamFeed = () => {
@@ -20,6 +28,14 @@ const WebcamFeed = () => {
   const canvasRef = useRef(null);
   const faceMeshRef = useRef(null); // Reference for face mesh instance
   const lensRefs = [
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
+    useRef(new Image()),
     useRef(new Image()),
     useRef(new Image()),
     useRef(new Image()),
@@ -49,6 +65,14 @@ const WebcamFeed = () => {
     lensImage9,
     lensImage10,
     lensImage11,
+    lensImage12,
+    lensImage13,
+    lensImage14,
+    lensImage15,
+    lensImage16,
+    lensImage17,
+    lensImage18,
+    lensImage19,
   ];
 
   useEffect(() => {
@@ -200,7 +224,7 @@ const WebcamFeed = () => {
       const irisSize = Math.min(irisWidth, irisHeight) * 1.8;
 
       // Set transparency level
-      canvasCtx.globalAlpha = 0.3;
+      canvasCtx.globalAlpha = 0.25;
 
       canvasRef.current.style.filter = "blur(2px)";
       // Draw the lens

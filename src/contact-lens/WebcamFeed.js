@@ -2,39 +2,25 @@ import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
-import lensImage1 from "../Lens/1.png";
-import lensImage2 from "../Lens/2.png";
-import lensImage3 from "../Lens/3.png";
-import lensImage4 from "../Lens/4.png";
-import lensImage5 from "../Lens/5.png";
-import lensImage6 from "../Lens/6.png";
-import lensImage7 from "../Lens/7.png";
-import lensImage8 from "../Lens/8.png";
-import lensImage9 from "../Lens/9.png";
-import lensImage10 from "../Lens/10.png";
-import lensImage11 from "../Lens/11.png";
-import lensImage12 from "../Lens/12.png";
-import lensImage13 from "../Lens/13.png";
-import lensImage14 from "../Lens/14.png";
-import lensImage15 from "../Lens/15.png";
-import lensImage16 from "../Lens/16.png";
-import lensImage17 from "../Lens/17.png";
-import lensImage18 from "../Lens/18.png";
-import lensImage19 from "../Lens/19.png";
-import loadingSpinner from "./loading-spinner.gif"; // Import your loading spinner image
+import lensImage1 from "../Lens/AMETHYST.png";
+import lensImage2 from "../Lens/BLUE.png";
+import lensImage3 from "../Lens/BRILLINT BLUE.png";
+import lensImage4 from "../Lens/BROWN.png";
+import lensImage5 from "../Lens/GRAY.png";
+import lensImage6 from "../Lens/GREEN.png";
+import lensImage7 from "../Lens/HONEY.png";
+import lensImage8 from "../Lens/PURE HAZEL.png";
+import lensImage9 from "../Lens/STERLING GRAY.png";
+import lensImage10 from "../Lens/TRUE SAPPHIRE.png";
+import lensImage11 from "../Lens/TURQUOISE.png";
+import lensImage12 from "../Lens/GEMSTONE GREEN.png";
+import loadingSpinner from "./loading-spinner.gif";
 
 const WebcamFeed = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const faceMeshRef = useRef(null); // Reference for face mesh instance
+  const faceMeshRef = useRef(null);
   const lensRefs = [
-    useRef(new Image()),
-    useRef(new Image()),
-    useRef(new Image()),
-    useRef(new Image()),
-    useRef(new Image()),
-    useRef(new Image()),
-    useRef(new Image()),
     useRef(new Image()),
     useRef(new Image()),
     useRef(new Image()),
@@ -66,13 +52,21 @@ const WebcamFeed = () => {
     lensImage10,
     lensImage11,
     lensImage12,
-    lensImage13,
-    lensImage14,
-    lensImage15,
-    lensImage16,
-    lensImage17,
-    lensImage18,
-    lensImage19,
+  ];
+
+  const lensNames = [
+    "Amethyst",
+    "Blue",
+    "Brilliant Blue",
+    "Brown",
+    "Gray",
+    "Green",
+    "Honey",
+    "Pure Hazel",
+    "Sterling Gray",
+    "True Sapphire",
+    "Turquoise",
+    'GEMSTONE GREEN',
   ];
 
   useEffect(() => {
@@ -84,7 +78,7 @@ const WebcamFeed = () => {
         })
       );
 
-      setLoading(true); 
+      setLoading(true);
       startFaceMesh();
     };
 
@@ -221,10 +215,10 @@ const WebcamFeed = () => {
       const irisHeight =
         Math.abs(eyeLandmarks[5].y - eyeLandmarks[2].y) *
         canvasRef.current.height;
-      const irisSize = Math.min(irisWidth, irisHeight) * 1.8;
+      const irisSize = Math.min(irisWidth, irisHeight) * 1.6;
 
       // Set transparency level
-      canvasCtx.globalAlpha = 0.25;
+      canvasCtx.globalAlpha = 0.18;
 
       canvasRef.current.style.filter = "blur(2px)";
       // Draw the lens
@@ -291,9 +285,9 @@ const WebcamFeed = () => {
           <img src={loadingSpinner} alt="Loading Spinner" />
         </div>
       )}
-      <div className="lens-selection-container">
+      <div className="lens-selection-container" style={{textAlign:"center", alignItems:"center", paddingLeft:"12px", right:'0'}}>
         {lensImages.map((image, index) => (
-          <div
+          <div style={{marginLeft:"12px"}}
             key={index}
             className={`lens-image-wrapper ${
               selectedLens === index ? "selected" : ""
@@ -305,6 +299,7 @@ const WebcamFeed = () => {
               alt={`Lens ${index + 1}`}
               className="lens-image img-fluid"
             />
+            <div className="lens-name">{lensNames[index]}</div>
             {selectedLens === index && <div className="shadow-box"></div>}
           </div>
         ))}

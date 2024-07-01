@@ -15,7 +15,7 @@
 .loading-overlay{
   position: absolute;
   top: 35%;
-  left: 40%;
+  left: 50%;
   z-index: 1;
 }
 .loading-overlay img{

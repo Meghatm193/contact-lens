@@ -4,6 +4,7 @@ import { BrowserRouter, Routes , Route } from 'react-router-dom';
 import WebcamFeed from './contact-lens/WebcamFeed';
 import TryOnGlasses from './glasses-frames/TryOnGlasses';
 
+import bgimg from './bgimg.jpg'
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam";
+
 import * as faceMeshLib from "@mediapipe/face_mesh";
 import * as cam from "@mediapipe/camera_utils";
 import lensImage1 from "../Lens/AMETHYST.png";
@@ -15,6 +16,7 @@ import lensImage10 from "../Lens/TRUE SAPPHIRE.png";
 import lensImage11 from "../Lens/TURQUOISE.png";
 import lensImage12 from "../Lens/GEMSTONE GREEN.png";
 import loadingSpinner from "./loading-spinner.gif";
+import bgimg from '../bg21.jpg'
 
 const WebcamFeed = () => {
   const webcamRef = useRef(null);
@@ -264,7 +266,9 @@ const WebcamFeed = () => {
   };
 
   return (
-    <div className="webcam-feed-container">
+    <div className="webcam-feed-container" style={{
+        backgroundImage: `url(${bgimg})`
+      }}>
       <Webcam
         ref={webcamRef}
         hidden

@@ -128,3 +128,9 @@
   position: relative;
   z-index: 1; /* Ensure the lens image is on top */
 }
+.webcam-feed-container{
+  height: 98vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: none;
+}

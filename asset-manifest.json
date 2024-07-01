@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/contact-lens/static/css/main.fbb83c28.css",
-    "main.js": "/contact-lens/static/js/main.96ecb5cd.js",
+    "main.js": "/contact-lens/static/js/main.72f36f1b.js",
     "static/media/bgimg.jpg": "/contact-lens/static/media/bgimg.4f17aa56ce1ac97b5513.jpg",
     "static/media/frame2.png": "/contact-lens/static/media/frame2.ebcd7c39bbcb4a326bcd.png",
     "static/media/bg21.jpg": "/contact-lens/static/media/bg21.e794ec06fa352be5f7ab.jpg",
@@ -21,10 +21,10 @@
     "static/media/STERLING GRAY.png": "/contact-lens/static/media/STERLING GRAY.d6b0758583109029feb2.png",
     "index.html": "/contact-lens/index.html",
     "main.fbb83c28.css.map": "/contact-lens/static/css/main.fbb83c28.css.map",
-    "main.96ecb5cd.js.map": "/contact-lens/static/js/main.96ecb5cd.js.map"
+    "main.72f36f1b.js.map": "/contact-lens/static/js/main.72f36f1b.js.map"
   },
   "entrypoints": [
     "static/css/main.fbb83c28.css",
-    "static/js/main.96ecb5cd.js"
+    "static/js/main.72f36f1b.js"
   ]
 }
